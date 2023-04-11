@@ -96,34 +96,3 @@ export class ArcClient {
     return result;
   }
 }
-
-async function main() {
-  const arc = new ArcClient({
-    host: "localhost",
-    port: 3351,
-    secure: false,
-    username: "root",
-    password: "root"
-  });
-
-  let result = await arc.query({ collection: "planets", operation: "drop" });
-  console.log("Drop result", result);
-  result = await arc.query({
-    collection: "planets",
-    operation: "insert",
-    data: {
-      query: [{ name: "Mercury" }, { name: "Venus" }, { name: "Earth" }, { name: "Mars" }],
-    },
-  });
-  console.log("Insert result", result);
-  result = await arc.query({
-    collection: "planets",
-    operation: "find",
-    data: {
-      query: { name: { $includes: "M" } },
-    },
-  });
-  console.log("Find result", result);
-}
-
-main();
