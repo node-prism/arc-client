@@ -1,0 +1,20 @@
+{
+  "name": "@prsm/arc-client",
+  "version": "1.0.0",
+  "description": "",
+  "author": "nvms",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "esbuild-wrapper build",
+    "types": "tsc --declaration --emitDeclarationOnly",
+    "run": "esbuild-wrapper run",
+    "serve": "esbuild-wrapper serve"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "esbuild-wrapper": "github:nvms/esbuild-wrapper",
+    "typescript": "^5.0.4"
+  }
+}
