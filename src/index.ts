@@ -39,7 +39,7 @@ export class ArcClient {
     const result: { error?: string, accessToken?: string, refreshToken?: string } = await this.client.command(1, { accessToken, refreshToken });
 
     if (result.error) {
-      throw new Error("Failed to refresh tokens");
+      throw new Error(result.error);
     }
 
     this.tokens = {
