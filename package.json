@@ -7,14 +7,18 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "esbuild-wrapper build",
-    "types": "tsc --declaration --emitDeclarationOnly",
-    "run": "esbuild-wrapper run",
-    "serve": "esbuild-wrapper serve"
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "esbuild-wrapper": "github:nvms/esbuild-wrapper",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {

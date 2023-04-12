@@ -1,5 +1,6 @@
-import { CommandClient } from "@prsm/duplex";
-export type QueryPayload = {
+import { CommandClient } from '@prsm/duplex';
+
+type QueryPayload = {
     collection: string;
     operation: "find" | "insert" | "update" | "remove" | "drop";
     data?: {
@@ -9,7 +10,7 @@ export type QueryPayload = {
     };
     accessToken?: string;
 };
-export declare class ArcClient {
+declare class ArcClient {
     readonly client: CommandClient;
     private authenticated;
     private username;
@@ -25,4 +26,8 @@ export declare class ArcClient {
     refresh(): Promise<void>;
     auth(): Promise<void>;
     query(query: QueryPayload): any;
+    createUser(username: string, password: string): Promise<unknown>;
+    removeUser(username: string): Promise<unknown>;
 }
+
+export { ArcClient, QueryPayload };
