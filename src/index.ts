@@ -87,7 +87,7 @@ export class ArcClient {
       try {
         await this.refresh();
       } catch (e) {
-        throw new Error("Failed to refresh tokens");
+        throw new Error(`Failed to refresh tokens: ${e.mesage}`);
       }
 
       return await this.query(query);
