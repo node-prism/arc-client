@@ -17,36 +17,17 @@ type AuthPayload = {
   password: string;
 };
 
-type RefreshPayload = {
-  accessToken: string;
-  refreshToken: string;
-};
-
 export class ArcClient {
   public readonly client: CommandClient;
   private authenticated = false;
   private username: string;
   private password: string;
-  private tokens: { accessToken: string; refreshToken: string };
+  private tokens: { accessToken: string; };
 
   constructor({ host, port, secure, username, password }) {
     this.client = new CommandClient({ host, port, secure });
     this.username = username;
     this.password = password;
-  }
-
-  async refresh() {
-    const { accessToken, refreshToken } = this.tokens;
-    const result: { error?: string, accessToken?: string, refreshToken?: string } = await this.client.command(1, { accessToken, refreshToken });
-
-    if (result.error) {
-      throw new Error(result.error);
-    }
-
-    this.tokens = {
-      accessToken: result.accessToken,
-      refreshToken: result.refreshToken
-    };
   }
 
   async auth() {
@@ -55,7 +36,7 @@ export class ArcClient {
       password: this.password
     };
 
-    const result: { error?: string, accessToken?: string, refreshToken?: string } = await this.client.command(0, payload);
+    const result: { error?: string, accessToken?: string } = await this.client.command(0, payload);
 
     if (result.error) {
       throw new Error("Failed to authenticate");
@@ -63,7 +44,6 @@ export class ArcClient {
 
     this.tokens = {
       accessToken: result.accessToken,
-      refreshToken: result.refreshToken
     };
 
     this.authenticated = true;
@@ -80,21 +60,7 @@ export class ArcClient {
 
     query.accessToken = this.tokens.accessToken;
 
-    let result;
-
-    result = await this.client.command(2, query);
-
-    if (result.error) {
-      try {
-        await this.refresh();
-      } catch (e) {
-        throw new Error(`Failed to refresh tokens: ${e.message}`);
-      }
-
-      return await this.query(query);
-    }
-
-    return result;
+    return await this.client.command(2, query);
   }
 
   async createUser(username: string, password: string) {

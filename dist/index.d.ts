@@ -24,17 +24,16 @@ declare class ArcClient {
         username: any;
         password: any;
     });
-    refresh(): Promise<void>;
     auth(): Promise<void>;
-    query(query: QueryPayload): any;
+    query(query: QueryPayload): Promise<unknown>;
     createUser(username: string, password: string): Promise<unknown>;
     removeUser(username: string): Promise<unknown>;
     collectionWrapper(collectionName: string): {
-        find: (query: object, options?: QueryOptions) => any;
-        insert: (query: object) => any;
-        update: (query: object, operations: object, options?: QueryOptions) => any;
-        remove: (query: object, options?: QueryOptions) => any;
-        drop: () => any;
+        find: (query: object, options?: QueryOptions) => Promise<unknown>;
+        insert: (query: object) => Promise<unknown>;
+        update: (query: object, operations: object, options?: QueryOptions) => Promise<unknown>;
+        remove: (query: object, options?: QueryOptions) => Promise<unknown>;
+        drop: () => Promise<unknown>;
     };
 }
 
