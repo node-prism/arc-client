@@ -54,3 +54,13 @@ const result = await arc.query({
 // ]
 
 ```
+
+Use `collectionWrapper(collectionName: string)` to receive a more simplified API if your collection name doesn't change over time. This provides the same API as a standard `@prsm/arc` `Collection`, with the one exception being that this interface is async.
+
+```typescript
+const planets = arc.collectionWrapper("planets");
+
+await planets.drop();
+await planets.insert([{ name: "Mercury" }, { name: "Venus" }, { name: "Earth" }, { name: "Mars" }]);
+await planets.find({ name: { $includes: "M" } });
+```
