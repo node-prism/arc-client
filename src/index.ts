@@ -95,4 +95,23 @@ export class ArcClient {
 
     return result;
   }
+
+  async createUser(username: string, password: string) {
+    const payload = {
+      username,
+      password,
+      accessToken: this.tokens.accessToken
+    };
+
+    return await this.client.command(3, payload);
+  }
+
+  async removeUser(username: string) {
+    const payload = {
+      username,
+      accessToken: this.tokens.accessToken
+    };
+
+    return await this.client.command(4, payload);
+  }
 }
