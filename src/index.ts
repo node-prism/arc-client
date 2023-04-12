@@ -1,3 +1,4 @@
+import { type QueryOptions } from "@prsm/arc";
 import { CommandClient } from "@prsm/duplex";
 
 export type QueryPayload = {
@@ -117,10 +118,10 @@ export class ArcClient {
 
   collectionWrapper(collectionName: string) {
     return {
-      find: (query: object, options: object) => this.query({ collection: collectionName, operation: "find", data: { query, options } }),
+      find: (query: object, options: QueryOptions) => this.query({ collection: collectionName, operation: "find", data: { query, options } }),
       insert: (query: object) => this.query({ collection: collectionName, operation: "insert", data: { query } }),
-      update: (query: object, operations: object, options: object) => this.query({ collection: collectionName, operation: "update", data: { query, operations, options } }),
-      remove: (query: object, options: object) => this.query({ collection: collectionName, operation: "remove", data: { query, options } }),
+      update: (query: object, operations: object, options: QueryOptions) => this.query({ collection: collectionName, operation: "update", data: { query, operations, options } }),
+      remove: (query: object, options: QueryOptions) => this.query({ collection: collectionName, operation: "remove", data: { query, options } }),
       drop: () => this.query({ collection: collectionName, operation: "drop" })
     };
   }

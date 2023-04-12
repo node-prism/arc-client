@@ -1,3 +1,4 @@
+import { QueryOptions } from '@prsm/arc';
 import { CommandClient } from '@prsm/duplex';
 
 type QueryPayload = {
@@ -29,10 +30,10 @@ declare class ArcClient {
     createUser(username: string, password: string): Promise<unknown>;
     removeUser(username: string): Promise<unknown>;
     collectionWrapper(collectionName: string): {
-        find: (query: object, options: object) => any;
+        find: (query: object, options: QueryOptions) => any;
         insert: (query: object) => any;
-        update: (query: object, operations: object, options: object) => any;
-        remove: (query: object, options: object) => any;
+        update: (query: object, operations: object, options: QueryOptions) => any;
+        remove: (query: object, options: QueryOptions) => any;
         drop: () => any;
     };
 }
