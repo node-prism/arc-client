@@ -114,4 +114,14 @@ export class ArcClient {
 
     return await this.client.command(4, payload);
   }
+
+  collectionWrapper(collectionName: string) {
+    return {
+      find: (query: object, options: object) => this.query({ collection: collectionName, operation: "find", data: { query, options } }),
+      insert: (operations: object, options: object) => this.query({ collection: collectionName, operation: "insert", data: { operations, options } }),
+      update: (query: object, operations: object, options: object) => this.query({ collection: collectionName, operation: "update", data: { query, operations, options } }),
+      remove: (query: object, options: object) => this.query({ collection: collectionName, operation: "remove", data: { query, options } }),
+      drop: () => this.query({ collection: collectionName, operation: "drop" })
+    };
+  }
 }
