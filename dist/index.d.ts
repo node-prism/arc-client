@@ -30,7 +30,7 @@ declare class ArcClient {
     removeUser(username: string): Promise<unknown>;
     collectionWrapper(collectionName: string): {
         find: (query: object, options: object) => any;
-        insert: (operations: object, options: object) => any;
+        insert: (query: object) => any;
         update: (query: object, operations: object, options: object) => any;
         remove: (query: object, options: object) => any;
         drop: () => any;
