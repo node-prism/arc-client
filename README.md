@@ -1,5 +1,7 @@
 # arc-client
 
+arc-client uses [`@prsm/duplex`](https://github.com/node-prism/duplex) in order to communicate with a [`@prsm/arc-server`](https://github.com/node-prism/arc-server) over TCP.
+
 ## Quickstart
 
 ```typescript
