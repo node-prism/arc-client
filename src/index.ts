@@ -1,5 +1,6 @@
 import { type QueryOptions } from "@prsm/arc";
 import { CommandClient } from "@prsm/duplex";
+import EventEmitter from "events";
 
 export type QueryPayload = {
   collection: string;
@@ -23,11 +24,22 @@ export class ArcClient {
   private username: string;
   private password: string;
   private tokens: { accessToken: string; };
+  public emitter: EventEmitter;
 
   constructor({ host, port, secure, username, password }) {
     this.client = new CommandClient({ host, port, secure });
     this.username = username;
     this.password = password;
+    this.emitter = new EventEmitter();
+  }
+
+  close() {
+    this.authenticated = false;
+    this.client.close();
+  }
+
+  open() {
+    this.client.connect();
   }
 
   async auth() {
@@ -39,6 +51,7 @@ export class ArcClient {
     const result: { error?: string, accessToken?: string } = await this.client.command(0, payload);
 
     if (result.error) {
+      this.emitter.emit("autherror", result.error);
       throw new Error("Failed to authenticate");
     }
 
@@ -47,6 +60,7 @@ export class ArcClient {
     };
 
     this.authenticated = true;
+    this.emitter.emit("authsuccess");
   }
 
   async query(query: QueryPayload) {

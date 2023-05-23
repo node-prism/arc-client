@@ -1,5 +1,6 @@
 import { QueryOptions } from '@prsm/arc';
 import { CommandClient } from '@prsm/duplex';
+import EventEmitter from 'events';
 
 type QueryPayload = {
     collection: string;
@@ -17,6 +18,7 @@ declare class ArcClient {
     private username;
     private password;
     private tokens;
+    emitter: EventEmitter;
     constructor({ host, port, secure, username, password }: {
         host: any;
         port: any;
@@ -24,6 +26,8 @@ declare class ArcClient {
         username: any;
         password: any;
     });
+    close(): void;
+    open(): void;
     auth(): Promise<void>;
     query(query: QueryPayload): Promise<unknown>;
     createUser(username: string, password: string): Promise<unknown>;

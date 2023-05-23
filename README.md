@@ -15,6 +15,9 @@ const arc = new ArcClient({
   password: "toor"
 });
 
+// try to authenticate using the provided username and password
+await arc.auth();
+
 await arc.query({ collection: "planets", operation: "drop" });
 
 await arc.query({
@@ -63,4 +66,31 @@ const planets = arc.collectionWrapper("planets");
 await planets.drop();
 await planets.insert([{ name: "Mercury" }, { name: "Venus" }, { name: "Earth" }, { name: "Mars" }]);
 await planets.find({ name: { $includes: "M" } });
+```
+
+## Events
+
+```typescript
+// authentication failure, error includes reason
+arc.client.emitter.on("autherror", (error: string) => {});
+
+// authentication was a success
+arc.client.emitter.on("authsuccess", () => {});
+```
+
+## Handling the connection
+
+To disconnect an active session, call `close` on the client:
+
+```typescript
+arc.close();
+```
+
+After closing the connection, you can reconnect by calling `connect`:
+
+```typescript
+arc.connect();
+
+// you will need to reauthenticate at this point
+await arc.auth();
 ```
