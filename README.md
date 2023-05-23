@@ -72,10 +72,10 @@ await planets.find({ name: { $includes: "M" } });
 
 ```typescript
 // authentication failure, error includes reason
-arc.client.emitter.on("autherror", (error: string) => {});
+arc.emitter.on("autherror", (error: string) => {});
 
 // authentication was a success
-arc.client.emitter.on("authsuccess", () => {});
+arc.emitter.on("authsuccess", () => {});
 ```
 
 ## Handling the connection
