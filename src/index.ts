@@ -52,7 +52,8 @@ export class ArcClient {
 
     if (result.error) {
       this.emitter.emit("autherror", result.error);
-      throw new Error("Failed to authenticate");
+      // throw new Error("Failed to authenticate");
+      return;
     }
 
     this.tokens = {
