@@ -28,7 +28,7 @@ declare class ArcClient {
     });
     close(): void;
     open(): void;
-    auth(): Promise<void>;
+    auth(): Promise<boolean>;
     query(query: QueryPayload): Promise<unknown>;
     createUser(username: string, password: string): Promise<unknown>;
     removeUser(username: string): Promise<unknown>;

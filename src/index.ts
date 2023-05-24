@@ -42,7 +42,7 @@ export class ArcClient {
     this.client.connect();
   }
 
-  async auth() {
+  async auth(): Promise<boolean> {
     const payload = {
       username: this.username,
       password: this.password
@@ -53,7 +53,7 @@ export class ArcClient {
     if (result.error) {
       this.emitter.emit("autherror", result.error);
       // throw new Error("Failed to authenticate");
-      return;
+      return false;
     }
 
     this.tokens = {
@@ -62,6 +62,8 @@ export class ArcClient {
 
     this.authenticated = true;
     this.emitter.emit("authsuccess");
+
+    return true;
   }
 
   async query(query: QueryPayload) {
