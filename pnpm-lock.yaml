@@ -2,13 +2,13 @@ lockfileVersion: 5.4
 
 specifiers:
   '@prsm/arc': ^2.2.3
-  '@prsm/duplex': ^1.1.7
+  '@prsm/duplex': ^1.1.8
   '@types/node': ^18.15.11
   tsup: ^6.7.0
   typescript: ^5.0.4
 
 dependencies:
-  '@prsm/duplex': 1.1.7
+  '@prsm/duplex': 1.1.8
 
 devDependencies:
   '@prsm/arc': 2.2.3
@@ -278,8 +278,8 @@ packages:
       lodash: 4.17.21
     dev: true
 
-  /@prsm/duplex/1.1.7:
-    resolution: {integrity: sha512-efpbBqaOwSujl4QpdZ13SiuBbrzAkmf9MUR84WlxE+MHV8wrGPD/vKuD7AGWlVXnoR3qH6kd+iKjPwbfMXWoqQ==}
+  /@prsm/duplex/1.1.8:
+    resolution: {integrity: sha512-EoEDhzBUIrF5R3+zuZnVGwsvVLoJEDlfjo1iPMpE/3jWahN0LSce9jdVIBYC5/1fM+5MYEzPBLy6SIMIqarHuA==}
     dev: false
 
   /@types/node/18.15.11:
