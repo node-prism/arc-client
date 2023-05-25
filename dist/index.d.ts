@@ -1,5 +1,6 @@
 import { QueryOptions } from '@prsm/arc';
 import { CommandClient } from '@prsm/duplex';
+import { TokenClientOptions } from '@prsm/duplex/lib/client/commandclient';
 import EventEmitter from 'events';
 
 type QueryPayload = {
@@ -12,6 +13,13 @@ type QueryPayload = {
     };
     accessToken?: string;
 };
+type ArcClientOptions = TokenClientOptions & {
+    host: string;
+    port: number;
+    secure: boolean;
+    username: string;
+    password: string;
+};
 declare class ArcClient {
     readonly client: CommandClient;
     private authenticated;
@@ -19,13 +27,7 @@ declare class ArcClient {
     private password;
     private tokens;
     emitter: EventEmitter;
-    constructor({ host, port, secure, username, password }: {
-        host: any;
-        port: any;
-        secure: any;
-        username: any;
-        password: any;
-    });
+    constructor(options: ArcClientOptions);
     close(): void;
     open(): void;
     auth(): Promise<boolean>;
