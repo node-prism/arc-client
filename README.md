@@ -16,7 +16,8 @@ const arc = new ArcClient({
 });
 
 // try to authenticate using the provided username and password
-await arc.auth();
+// returns true if successful, false if not
+const success = await arc.auth();
 
 await arc.query({ collection: "planets", operation: "drop" });
 
