@@ -7,7 +7,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify"
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify",
+    "release": "bumpp package.json --commit 'Release %s' --push --tag && pnpm publish --access public"
   },
   "exports": {
     ".": {
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@prsm/arc": "^2.2.3",
     "@types/node": "^18.15.11",
+    "bumpp": "^9.1.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
