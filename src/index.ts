@@ -1,6 +1,5 @@
 import { type QueryOptions } from "@prsm/arc";
-import { CommandClient } from "@prsm/duplex";
-import { TokenClientOptions } from "@prsm/duplex/lib/client/commandclient";
+import { CommandClient, TokenClientOptions } from "@prsm/duplex";
 import EventEmitter from "events";
 
 export type QueryPayload = {
