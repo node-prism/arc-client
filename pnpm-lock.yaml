@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@prsm/duplex':
-    specifier: ^1.1.10
-    version: 1.1.10
+    specifier: ^1.1.11
+    version: 1.1.11
 
 devDependencies:
   '@prsm/arc':
@@ -298,8 +298,8 @@ packages:
       lodash: 4.17.21
     dev: true
 
-  /@prsm/duplex@1.1.10:
-    resolution: {integrity: sha512-ZOc7OMDj1ytE5NMdcN6G7/pvVF1E04cQTp5+vuhXKf3Sbdlt++y4m8uvUwoUsAamMt6nfGBbuyjUX3CfmObiAw==}
+  /@prsm/duplex@1.1.11:
+    resolution: {integrity: sha512-LafYiC5HikA0+YPKGtUaYmOUPRIIo+WKAU8cJTxBcnbl4e34vUHaLIh4zk3Q5DRXd//+DooAPcvaNwu6eoTdhg==}
     dev: false
 
   /@types/node@18.15.11:
