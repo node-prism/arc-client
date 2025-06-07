@@ -51,16 +51,15 @@ export class ArcClient {
       password: this.password
     };
 
-    const result: { error?: string, accessToken?: string } = await this.client.command(0, payload);
+    const result = await this.client.command(0, payload);
 
     if (result.error) {
       this.emitter.emit("autherror", result.error);
-      // throw new Error("Failed to authenticate");
       return false;
     }
 
     this.tokens = {
-      accessToken: result.accessToken,
+      accessToken: result.result.accessToken,
     };
 
     this.authenticated = true;

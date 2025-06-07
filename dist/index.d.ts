@@ -30,15 +30,63 @@ declare class ArcClient {
     close(): void;
     open(): void;
     auth(): Promise<boolean>;
-    query(query: QueryPayload): Promise<unknown>;
-    createUser(username: string, password: string): Promise<unknown>;
-    removeUser(username: string): Promise<unknown>;
+    query(query: QueryPayload): Promise<{
+        error: any;
+        result: any;
+    } | {
+        error: any;
+        result: any;
+    }>;
+    createUser(username: string, password: string): Promise<{
+        error: any;
+        result: any;
+    } | {
+        error: any;
+        result: any;
+    }>;
+    removeUser(username: string): Promise<{
+        error: any;
+        result: any;
+    } | {
+        error: any;
+        result: any;
+    }>;
     collectionWrapper(collectionName: string): {
-        find: (query: object, options?: QueryOptions) => Promise<unknown>;
-        insert: (query: object) => Promise<unknown>;
-        update: (query: object, operations: object, options?: QueryOptions) => Promise<unknown>;
-        remove: (query: object, options?: QueryOptions) => Promise<unknown>;
-        drop: () => Promise<unknown>;
+        find: (query: object, options?: QueryOptions) => Promise<{
+            error: any;
+            result: any;
+        } | {
+            error: any;
+            result: any;
+        }>;
+        insert: (query: object) => Promise<{
+            error: any;
+            result: any;
+        } | {
+            error: any;
+            result: any;
+        }>;
+        update: (query: object, operations: object, options?: QueryOptions) => Promise<{
+            error: any;
+            result: any;
+        } | {
+            error: any;
+            result: any;
+        }>;
+        remove: (query: object, options?: QueryOptions) => Promise<{
+            error: any;
+            result: any;
+        } | {
+            error: any;
+            result: any;
+        }>;
+        drop: () => Promise<{
+            error: any;
+            result: any;
+        } | {
+            error: any;
+            result: any;
+        }>;
     };
 }
 
